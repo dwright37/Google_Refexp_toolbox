@@ -22,7 +22,7 @@ logger.setLevel(logging.INFO)
 
 ## Step1. Download Google Refexp Data
 while True:
-  ch = raw_input('Do you want to download Google Refexp Datset? (Y/N)')
+  ch = input('Do you want to download Google Refexp Datset? (Y/N)')
   if ch == 'Y':
     os.system('mkdir google_refexp_dataset_release')
     os.system('cd google_refexp_dataset_release && '
@@ -31,27 +31,27 @@ while True:
               'unzip google_refexp_dataset_release.zip')
     os.system('cd google_refexp_dataset_release && '
               'rm -f google_refexp_dataset_release.zip')
-    print 'Google Refexp Dataset is now available at ./google_refexp_dataset_release'
+    print('Google Refexp Dataset is now available at ./google_refexp_dataset_release')
   if ch == 'Y' or ch == 'N':
     break
   else:
-    print 'Please type Y or N'
+    print('Please type Y or N')
 
 ## Step2. Download coco toolbox
 while True:
-  ch = raw_input('Do you want to download and install MS COCO toolbox? (Y/N)')
+  ch = input('Do you want to download and install MS COCO toolbox? (Y/N)')
   if ch == 'Y':
     os.system('cd ./external && git clone https://github.com/pdollar/coco.git')
     os.system('cd ./external/coco/PythonAPI && python setup.py build_ext --inplace')
-    print 'COCO toolbox is installed at ./external/coco/'
+    print('COCO toolbox is installed at ./external/coco/')
   if ch == 'Y' or ch == 'N':
     break
   else:
-    print 'Please type Y or N'
+    print('Please type Y or N')
     
 ## Step3. Download coco annotations
 while True:
-  ch = raw_input('Do you want to download MS COCO train2014 annotations? (Y/N)')
+  ch = input('Do you want to download MS COCO train2014 annotations? (Y/N)')
   if ch == 'Y':
     os.system('cd ./external/coco && wget http://msvocds.blob.core.windows.net/'
               'annotations-1-0-3/instances_train-val2014.zip && '
@@ -62,20 +62,20 @@ while True:
   if ch == 'Y' or ch == 'N':
     break
   else:
-    print 'Please type Y or N'
+    print('Please type Y or N')
     
 ## Step4. Download coco images
 while True:
-  ch = raw_input('Do you want to download MS COCO train2014 images? (Y/N)')
+  ch = input('Do you want to download MS COCO train2014 images? (Y/N)')
   if ch == 'Y':
     # Download images
     os.system('mkdir ./external/coco/images')
     os.system('cd ./external/coco/images && wget http://msvocds.blob.core.windows.net/coco2014/train2014.zip && unzip train2014.zip && rm -f train2014.zip')
-    print 'COCO train2014 images are downloaded at ./external/coco/images/train2014/'
+    print('COCO train2014 images are downloaded at ./external/coco/images/train2014/')
   if ch == 'Y' or ch == 'N':
     break
   else:
-    print 'Please type Y or N'
+    print('Please type Y or N')
 
 ## Step5. Align our dataset with MS COCO
 # Check whether MS COCO toolbox are installed

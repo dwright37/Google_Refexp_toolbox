@@ -195,18 +195,21 @@ class RefexpEvalComprehension(object):
     img_coco = self.refexp_dataset.loadImgs(ids=[image_id])[0]
     iou = cu.iou_bboxes(bbox_pred_top, ann['bbox'])
     
+    ref_text = ''
     if 'refexp' in pred_sample or 'refexp_id' in pred_sample:
       print 'The Referring expression input to the model is:'
       if 'refexp' in pred_sample:
         print '  ' + pred_sample['refexp']
+        ref_text = pred_sample['refexp']
       else:
         refexp_tmp = self.refexp_dataset.loadRefexps(ids=pred_sample['refexp_id'])[0]
         print '  ' + refexp_tmp['raw']
+        ref_text = refexp_tmp['raw']
     
     I = misc.imread(os.path.join(coco_image_dir, (img_coco['file_name'])))
     ax = plt.imshow(I)
     ax = plt.axis('off')
-    ax = plt.title('IoU: %.3f, green bbox: GT, red bbox: predicted' % iou)
+    ax = plt.title('IoU: %.3f, green bbox: GT, red bbox: predicted\n%s' % (iou, ref_text))
     cu.draw_bbox(plt.gca(), ann['bbox'], edge_color='green')
     cu.draw_bbox(plt.gca(), bbox_pred_top, edge_color='red')
     
